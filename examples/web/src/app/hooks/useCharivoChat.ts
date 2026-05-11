@@ -878,6 +878,9 @@ export function useCharivoChat({ canvasContainerRef }: UseCharivoChatOptions) {
    try {
       // @ts-ignore
       const response = await (window as any).puter.ai.chat(
+        try {
+      // @ts-expect-error: Puter is loaded globally via script tag
+      const response = await (window as any).puter.ai.chat(
         `Character Personality: ${character.personality}. User says: ${userMessage}`,
         { model: 'gpt-4o-mini' }
       );
