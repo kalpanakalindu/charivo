@@ -870,25 +870,29 @@ export function useCharivoChat({ canvasContainerRef }: UseCharivoChatOptions) {
   ]);
 
   const handleSend = useCallback(async () => {
-    if (!charivo || !input.trim()) {
-      return;
-    }
+    if (!input.trim()) return;
 
     const userMessage = input;
     setInput("");
     setIsLoading(true);
 
     try {
-      await charivo.userSay(userMessage);
-    } catch (error) {
-      setLlmError(
-        error instanceof Error ? error.message : "Failed to send message",
+      // Calls the Puter.js AI brain you added to layout.tsx
+      const response = await (window as any).puter.ai.chat(
+        `Character Personality: ${character.personality}. User says: ${userMessage}`,
+        { model: 'gpt-4o-mini' }
       );
+
+      // This makes the character "speak" and show your message in the chat
+      await charivo?.userSay(userMessage);
+      charivo?.getRenderer()?.say(response.message.content);
+      
+    } catch (error) {
+      console.error("Puter AI Error:", error);
     } finally {
       setIsLoading(false);
     }
-  }, [charivo, input, setInput, setIsLoading, setLlmError]);
-
+  }, [charivo, input, setInput, setIsLoading, character.personality]);
   const handleKeyPress = useCallback(
     (event: KeyboardEvent<HTMLInputElement>) => {
       if (event.key === "Enter" && !event.shiftKey) {
