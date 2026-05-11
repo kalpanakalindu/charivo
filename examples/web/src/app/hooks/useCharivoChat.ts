@@ -878,6 +878,10 @@ export function useCharivoChat({ canvasContainerRef }: UseCharivoChatOptions) {
 
     try {
       // Calls the Puter.js AI brain you added to layout.tsx
+      try {
+      // Calls the Puter.js AI brain you added to layout.tsx
+      // @ts-ignore
+      const response = await (window as any).puter.ai.chat(
       const response = await (window as any).puter.ai.chat(
         `Character Personality: ${character.personality}. User says: ${userMessage}`,
         { model: 'gpt-4o-mini' }
