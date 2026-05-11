@@ -80,6 +80,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <script src="https://js.puter.com/v2/"></script>
         {/* Favicons and App Icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link
