@@ -875,18 +875,13 @@ export function useCharivoChat({ canvasContainerRef }: UseCharivoChatOptions) {
     const userMessage = input;
     setInput("");
     setIsLoading(true);
-
-    try {
-      // Calls the Puter.js AI brain you added to layout.tsx
-      try {
-      // Calls the Puter.js AI brain you added to layout.tsx
+   try {
       // @ts-ignore
       const response = await (window as any).puter.ai.chat(
         `Character Personality: ${character.personality}. User says: ${userMessage}`,
         { model: 'gpt-4o-mini' }
       );
-
-      // This makes the character "speak" and show your message in the chat
+  // This makes the character "speak" and show your message in the chat
       await charivo?.userSay(userMessage);
       charivo?.getRenderer()?.say(response.message.content);
       
