@@ -80,15 +80,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script src="https://js.puter.com/v2/" strategy="beforeInteractive" />
-        {/* Favicons and App Icons */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link
-          rel="icon"
-          href="/icons/favicon-16x16.png"
-          sizes="16x16"
-          type="image/png"
-        />
+       import Script from 'next/script'
+
+// ... inside your RootLayout function, where the script was:
+<Script 
+  src="https://js.puter.com/v2/" 
+  strategy="beforeInteractive" 
+/>
         <link
           rel="icon"
           href="/icons/favicon-32x32.png"
